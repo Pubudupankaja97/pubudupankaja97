@@ -1,0 +1,1440 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Pubudu Senavirathne</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/favicon.png" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="assets/css/main.css" rel="stylesheet">
+  
+  <style>
+    /* Top Navigation Bar Styling */
+    .top-navbar {
+      background: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+      padding: 0.8rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      transition: all 0.3s ease;
+    }
+    
+    .top-navbar.scrolled {
+      padding: 0.5rem 0;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(10px);
+    }
+    
+    .navbar-brand {
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: #212529;
+    }
+    
+    .navbar-nav .nav-link {
+      font-weight: 500;
+      color: #2c3e50;
+      margin: 0 0.5rem;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+    
+    .navbar-nav .nav-link:hover,
+    .navbar-nav .nav-link.active {
+      color: #212529;
+    }
+    
+    .navbar-nav .nav-link:after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: #212529;
+      transition: width 0.3s ease;
+    }
+    
+    .navbar-nav .nav-link:hover:after,
+    .navbar-nav .nav-link.active:after {
+      width: 100%;
+    }
+    
+    /* WhatsApp Button Styling */
+    .whatsapp-float {
+      position: fixed;
+      width: 60px;
+      height: 60px;
+      bottom: 25px;
+      right: 25px;
+      background-color: #25d366;
+      color: #FFF;
+      border-radius: 50px;
+      text-align: center;
+      font-size: 30px;
+      box-shadow: 0 4px 20px rgba(37, 211, 102, 0.5);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      animation: pulse 2s infinite;
+    }
+    
+    .whatsapp-float:hover {
+      background-color: #128C7E;
+      transform: scale(1.1);
+      box-shadow: 0 6px 25px rgba(18, 140, 73, 0.7);
+    }
+    
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+      }
+      70% {
+        box-shadow: 0 0 0 10px rgba(37, 211, 102, 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+      }
+    }
+    
+    /* Adjust main content for top navbar */
+    .main {
+      padding-top: 80px; /* Height of the top navbar */
+    }
+    
+    /* Blog Section Styling */
+    .blog-section {
+      padding: 80px 0;
+    }
+    
+    .blog-card {
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s ease;
+      height: 100%;
+    }
+    
+    .blog-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+    }
+    
+    .blog-card img {
+      height: 200px;
+      object-fit: cover;
+      width: 100%;
+    }
+    
+    .blog-card-content {
+      padding: 1.5rem;
+    }
+    
+    .blog-date {
+      color: #6c757d;
+      font-size: 0.85rem;
+    }
+    
+    .blog-title {
+      font-size: 1.25rem;
+      margin: 0.5rem 0;
+    }
+    
+    .blog-excerpt {
+      color: #6c757d;
+      margin-bottom: 1rem;
+    }
+    
+    .blog-read-more {
+      color: #212529;
+      font-weight: 500;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+    }
+    
+    .blog-read-more:hover {
+      color: #212529;
+    }
+    
+    .blog-read-more i {
+      margin-left: 0.5rem;
+      transition: transform 0.3s ease;
+    }
+    
+    .blog-read-more:hover i {
+      transform: translateX(5px);
+    }
+  </style>
+
+  <!-- =======================================================
+  * Template Name: Style
+  * Template URL: https://bootstrapmade.com/style-bootstrap-portfolio-template/
+  * Updated: Jul 02 2025 with Bootstrap v5.3.7
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body class="index-page">
+
+  <!-- Top Navigation Bar -->
+  <nav class="navbar navbar-expand-lg top-navbar">
+    <div class="container">
+      <a class="navbar-brand" href="#hero">Pubudu Senavirathne</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#topNavbar" aria-controls="topNavbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="topNavbar">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" href="#hero">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#about">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#resume">Resume</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#portfolio">Portfolio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#services">Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#blog">Blog</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#testimonials">Testimonials</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#faq">FaQ</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#contact">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- WhatsApp Floating Button -->
+  <a href="https://wa.me/+94727315430" class="whatsapp-float" target="_blank">
+    <i class="bi bi-whatsapp"></i>
+  </a>
+
+  <main class="main">
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero section">
+
+      <div class="container">
+        <div class="row g-0 align-items-center">
+
+          <div class="col-lg-6 hero-content" data-aos="fade-right" data-aos-delay="100">
+            <div class="content-wrapper">
+              <h1 class="hero-title">I'm a <span class="typed" data-typed-items="Graphic Designer, Quantity Surveyor, Freelancer, Content Creator"></span></h1>
+              <p class="lead">I create digital experiences that inspire and engage. With a passion for clean design and innovative solutions, I transform ideas into beautiful, functional realities.</p>
+
+              <div class="hero-stats" data-aos="fade-up" data-aos-delay="200">
+                <div class="stat-item">
+                  <span class="purecounter" data-purecounter-start="0" data-purecounter-end="50" data-purecounter-duration="2">0</span>
+                  <span class="stat-label">Projects Completed</span>
+                </div>
+                <div class="stat-item">
+                  <span class="purecounter" data-purecounter-start="0" data-purecounter-end="3" data-purecounter-duration="2">0</span>
+                  <span class="stat-label">Years Experience</span>
+                </div>
+                <div class="stat-item">
+                  <span class="purecounter" data-purecounter-start="0" data-purecounter-end="35" data-purecounter-duration="2">0</span>
+                  <span class="stat-label">Happy Clients</span>
+                </div>
+              </div>
+
+              <div class="hero-actions" data-aos="fade-up" data-aos-delay="300">
+                <a href="#portfolio" class="btn btn-primary">View My Work</a>
+                <a href="#contact" class="btn btn-outline">Get In Touch</a>
+              </div>
+
+              <div class="social-links" data-aos="fade-up" data-aos-delay="400">
+                <a href="https://x.com/pubudupankaja97"><i class="bi bi-twitter-x"></i></a>
+                <a href="https://www.linkedin.com/in/pubudu-senavirathne-768206274/"><i class="bi bi-linkedin"></i></a>
+                <a href="https://www.instagram.com/pu_bba/?igsh=MmVlMjlkMTBhMg%3D%3D&utm_source=qr"><i class="bi bi-instagram"></i></a>
+                <a href="https://www.behance.net/pubudupankaja"><i class="bi bi-behance"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6 hero-image" data-aos="fade-left" data-aos-delay="200">
+            <div class="image-container">
+              <div class="floating-elements">
+                <div class="floating-card card-1" data-aos="zoom-in" data-aos-delay="300">
+                  <i class="bi bi-palette"></i>
+                  <span>Graphic Design</span>
+                </div>
+                <div class="floating-card card-2" data-aos="zoom-in" data-aos-delay="400">
+                  <i class="bi bi-rulers"></i>
+                  <span>Quantity Surveying</span>
+                </div>
+                <div class="floating-card card-3" data-aos="zoom-in" data-aos-delay="500">
+                  <i class="bi bi-lightning"></i>
+                  <span>Creative Ideas</span>
+                </div>
+              </div>
+              <img src="assets/img/profile/profile1.jpeg" alt="Portfolio Hero" class="img-fluid hero-main-image">
+              <div class="image-overlay"></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </section><!-- /Hero Section -->
+
+    <!-- About Section -->
+    <section id="about" class="about section">
+
+      <!-- Section Title -->
+      <div class="container section-title">
+        <h2>About</h2>
+        <p>I decided to follow my true passion and here I am today</p>
+      </div><!-- End Section Title -->
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row align-items-center">
+
+          <div class="col-lg-5" data-aos="fade-right" data-aos-delay="200">
+            <div class="profile-image-wrapper">
+              <div class="profile-image">
+                <img src="assets/img/profile/Z62_0644.jpg" alt="Profile" class="img-fluid">
+              </div>
+              <div class="signature-section">
+                <img src="assets/img/profile/sign.png" alt="Signature" class="signature">
+                <p class="quote">Design is not just what it looks like, but how it feels and communicates.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-7" data-aos="fade-left" data-aos-delay="300">
+            <div class="about-content">
+              <div class="intro">
+                <h2>Hi, I'm Pubudu - Graphic Designer </h2>
+                <p>I was once a Quantity Surveyor, but along the way I discovered my true passion — Graphic Design. Today, I dedicate myself to creating meaningful and impactful visuals that bring ideas to life. My work spans across branding, logo design, social media content creation, video editing, UI/UX design, digital marketing, and social media management.
+
+With creativity at the core of everything I do, I strive to craft designs that not only look stunning but also help businesses connect with their audiences in powerful ways.</p>
+              </div>
+
+              <div class="skills-grid">
+                <div class="skill-item" data-aos="zoom-in" data-aos-delay="400">
+                  <div class="skill-icon">
+                    <i class="bi bi-palette"></i>
+                  </div>
+                  <h4>Brand Identity & Design</h4>
+                  <p>Branding,Logo Design,Flyers,Merchandise</p>
+                </div>
+                <div class="skill-item" data-aos="zoom-in" data-aos-delay="450">
+                  <div class="skill-icon">
+                    <i class="bi bi-chat-square-heart"></i>
+                  </div>
+                  <h4>Digital Content Creation</h4>
+                  <p>Social Media Posts & Ads,Video Editing</p>
+                </div>
+                <div class="skill-item" data-aos="zoom-in" data-aos-delay="500">
+                  <div class="skill-icon">
+                    <i class="bi bi-graph-up-arrow"></i>
+                  </div>
+                  <h4>Marketing & Management</h4>
+                  <p>Digital Marketing,Social Media Handling,Campaign Support</p>
+                </div>
+              </div>
+
+              <div class="journey-timeline" data-aos="fade-up" data-aos-delay="300">
+                <div class="timeline-item">
+                  <div class="year">2024</div>
+                  <div class="description">Graduated with B.Sc.(hons) in Quantity Surveying from De Monfort University</div>
+                </div>
+                <div class="timeline-item">
+                  <div class="year">2025</div>
+                  <div class="description">Joined First Team Group as Graphic designer & Multi-media</div>
+                </div>
+                <div class="timeline-item">
+                  <div class="year">2025</div>
+                  <div class="description">Start a New Graphic design agency named "Creativo Designs"</div>
+                </div>
+              </div>
+
+              <div class="cta-section" data-aos="fade-up" data-aos-delay="400">
+                <div class="fun-fact">
+                  <span class="emoji">☕</span>
+                  <span class="text">Fueled by coffee, creating in Sri Lanka</span>
+                </div>
+                <div class="action-buttons">
+                  <a href="#portfolio" class="btn btn-primary">View My Work</a>
+                  <a href="https://drive.google.com/file/d/1_2yNuokm-krfoIM8BMd3vj7wqfXDjoOq/view?usp=sharing" class="btn btn-outline">Download Resume</a>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section><!-- /About Section -->
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills section">
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row">
+          <div class="col-lg-8">
+            <div class="skills-grid">
+              <div class="row g-4">
+                <div class="col-md-6" data-aos="flip-left" data-aos-delay="200">
+                  <div class="skill-card">
+                    <div class="skill-header">
+                      <i class="bi bi-palette"></i>
+                      <h3>Digital Graphic Design</h3>
+                    </div>
+                    <div class="skills-animation">
+                      <div class="skill-item">
+                        <div class="skill-info">
+                          <span class="skill-name">Photoshop</span>
+                          <span class="skill-percentage">95%</span>
+                        </div>
+                        <div class="skill-bar progress">
+                          <div class="progress-bar" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                      </div>
+
+                      <div class="skill-item">
+                        <div class="skill-info">
+                          <span class="skill-name">Illustrator</span>
+                          <span class="skill-percentage">88%</span>
+                        </div>
+                        <div class="skill-bar progress">
+                          <div class="progress-bar" role="progressbar" aria-valuenow="88" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                      </div>
+
+                      <div class="skill-item">
+                        <div class="skill-info">
+                          <span class="skill-name">premiere pro</span>
+                          <span class="skill-percentage">70%</span>
+                        </div>
+                        <div class="skill-bar progress">
+                          <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div><!-- End Frontend Card -->
+                </div>
+
+                <div class="col-md-6" data-aos="flip-left" data-aos-delay="300">
+                  <div class="skill-card">
+                    <div class="skill-header">
+                      <i class="bi bi-printer"></i>
+                      <h3>Printing Graphic Design</h3>
+                    </div>
+                    <div class="skills-animation">
+                      <div class="skill-item">
+                        <div class="skill-info">
+                          <span class="skill-name">CorelDRAW</span>
+                          <span class="skill-percentage">95%</span>
+                        </div>
+                        <div class="skill-bar progress">
+                          <div class="progress-bar" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                      </div>
+
+                      <div class="skill-item">
+                        <div class="skill-info">
+                          <span class="skill-name">InDesign</span>
+                          <span class="skill-percentage">60%</span>
+                        </div>
+                        <div class="skill-bar progress">
+                          <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                      </div>
+
+                      <div class="skill-item">
+                        <div class="skill-info">
+                          <span class="skill-name">Prepress & Color Management</span>
+                          <span class="skill-percentage">80%</span>
+                        </div>
+                        <div class="skill-bar progress">
+                          <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div><!-- End Backend Card -->
+                </div>
+
+                <div class="col-md-6" data-aos="flip-left" data-aos-delay="400">
+                  <div class="skill-card">
+                    <div class="skill-header">
+                      <i class="bi bi-window-fullscreen"></i>
+                      <h3>UI/UX Design</h3>
+                    </div>
+                    <div class="skills-animation">
+                      <div class="skill-item">
+                        <div class="skill-info">
+                          <span class="skill-name">Figma</span>
+                          <span class="skill-percentage">70%</span>
+                        </div>
+                        <div class="skill-bar progress">
+                          <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                      </div>
+
+                      <div class="skill-item">
+                        <div class="skill-info">
+                          <span class="skill-name">Wordpress</span>
+                          <span class="skill-percentage">70%</span>
+                        </div>
+                        <div class="skill-bar progress">
+                          <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                      </div>
+
+                      <div class="skill-item">
+                        <div class="skill-info">
+                          <span class="skill-name">Prototyping & Wireframing</span>
+                          <span class="skill-percentage">68%</span>
+                        </div>
+                        <div class="skill-bar progress">
+                          <div class="progress-bar" role="progressbar" aria-valuenow="68" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div><!-- End Design Card -->
+                </div>
+
+                <div class="col-md-6" data-aos="flip-left" data-aos-delay="500">
+                  <div class="skill-card">
+                    <div class="skill-header">
+                      <i class="bi bi-graph-up-arrow"></i>
+                      <h3>Digital Marketing</h3>
+                    </div>
+                    <div class="skills-animation">
+                      <div class="skill-item">
+                        <div class="skill-info">
+                          <span class="skill-name">Social Media Marketing</span>
+                          <span class="skill-percentage">86%</span>
+                        </div>
+                        <div class="skill-bar progress">
+                          <div class="progress-bar" role="progressbar" aria-valuenow="86" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                      </div>
+
+                      <div class="skill-item">
+                        <div class="skill-info">
+                          <span class="skill-name">SEO/SEM</span>
+                          <span class="skill-percentage">73%</span>
+                        </div>
+                        <div class="skill-bar progress">
+                          <div class="progress-bar" role="progressbar" aria-valuenow="73" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                      </div>
+
+                      <div class="skill-item">
+                        <div class="skill-info">
+                          <span class="skill-name">Content Marketing</span>
+                          <span class="skill-percentage">80%</span>
+                        </div>
+                        <div class="skill-bar progress">
+                          <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div><!-- End DevOps Card -->
+                </div>
+              </div>
+            </div><!-- End Skills Grid -->
+          </div>
+
+          <div class="col-lg-4">
+            <div class="skills-summary" data-aos="fade-left" data-aos-delay="200">
+              <h3>Professional Expertise</h3>
+              <p>Creative designer specializing in digital & print design, UI/UX, and digital marketing — delivering impactful visuals and engaging user experiences.</p>
+
+              <div class="summary-stats">
+                <div class="stat-item" data-aos="zoom-in" data-aos-delay="300">
+                  <div class="stat-circle">
+                    <i class="bi bi-trophy"></i>
+                  </div>
+                  <div class="stat-info">
+                    <span class="stat-number">3+</span>
+                    <span class="stat-label">Years Experience</span>
+                  </div>
+                </div>
+
+                <div class="stat-item" data-aos="zoom-in" data-aos-delay="400">
+                  <div class="stat-circle">
+                    <i class="bi bi-diagram-3"></i>
+                  </div>
+                  <div class="stat-info">
+                    <span class="stat-number">50+</span>
+                    <span class="stat-label">Projects Completed</span>
+                  </div>
+                </div>
+
+                <div class="stat-item" data-aos="zoom-in" data-aos-delay="500">
+                  <div class="stat-circle">
+                    <i class="bi bi-people"></i>
+                  </div>
+                  <div class="stat-info">
+                    <span class="stat-number">35+</span>
+                    <span class="stat-label">Happy Clients</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="skills-badges" data-aos="fade-up" data-aos-delay="600">
+                <h4>Certifications</h4>
+                <div class="badge-list">
+                  <div class="skill-badge">google analytics</div>
+                  <div class="skill-badge">Meta ads</div>
+                  <div class="skill-badge">Digital Marketing</div>
+                  <div class="skill-badge">Figma</div>
+                </div>
+              </div>
+            </div><!-- End Skills Summary -->
+          </div>
+        </div>
+
+      </div>
+
+    </section><!-- /Skills Section -->
+
+    <!-- Resume Section -->
+    <section id="resume" class="resume section">
+
+      <!-- Section Title -->
+      <div class="container section-title">
+        <h2>Resume</h2>
+      </div><!-- End Section Title -->
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row">
+          <div class="col-lg-6" data-aos="fade-right" data-aos-delay="200">
+            <div class="experience-section">
+              <div class="section-header">
+                <h2><i class="bi bi-briefcase"></i> Professional Journey</h2>
+                <p class="section-subtitle">I started as a QS, but later I followed my true passion.</p>
+              </div>
+
+              <div class="experience-cards">
+                <div class="experience-card" data-aos="zoom-in" data-aos-delay="300">
+                  <div class="card-header">
+                    <div class="role-info">
+                      <h3>Graphic Designer & Multi-media</h3>
+                      <h4>First team group PVT(ltd)</h4>
+                    </div>
+                    <span class="duration">2025 - Present</span>
+                  </div>
+                  <div class="card-body">
+                    <p>Under First Team Group, I work across multiple industries including Real Estate, Hospitality (Hotels), Software, and Advertising. My primary responsibilities include handling all aspects of graphic design, branding, digital marketing, social media management, videography and photography, UI design, and print design.</p>
+                  </div>
+                </div>
+
+                <div class="experience-card" data-aos="zoom-in" data-aos-delay="400">
+                  <div class="card-header">
+                    <div class="role-info">
+                      <h3>Graphic Designer</h3>
+                      <h4>Yandex Designs PVT(ltd)</h4>
+                    </div>
+                    <span class="duration">2024 jul - 2025 Apr</span>
+                  </div>
+                  <div class="card-body">
+                    <p>Gained extensive experience in both digital media and printing while creating impactful designs and content.</p>
+                    <p></p>
+                      <p><B>Key Responsibilities:</B><p>
+                      <ul class="achievements">
+                      <li>Designed T-shirt graphics for apparel products</li>
+                      <li>Created engaging digital content for various platforms</li>
+                      <li>Developed UI designs for web and mobile interfaces</li>
+                      <li>Produced vector illustrations and artworks </li>
+                      <li>Designed digital advertising materials</li>
+                      <li>Prepared artwork for printing and production </li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="experience-card" data-aos="zoom-in" data-aos-delay="500">
+                  <div class="card-header">
+                    <div class="role-info">
+                      <h3>Quantity Surveyor</h3>
+                      <h4>ASB CONSTRUCTION (PVT)LTD</h4>
+                    </div>
+                    <span class="duration">2020 sep - 2022 nov</span>
+                  </div>
+                  <div class="card-body">
+                    <p>i worked as a QS/technical officer under the North pathadumbara Intergrated Water Supply Project under National Water supply & Drainage Bord since 22th August 2020 to 20th August 2022.</p>
+                    <ul class=">">
+                      <li>Source of Funding - Exim Bank of China + GOSL</li>
+                      <li>Project Cost - 1,300 Million Rupees</li>
+                      <li>Service Area - Northern part of Kandy District </li>
+                      <li>Service Reservoirs - 04 Nos </li>
+                      <li>Pump Houses and M&E Improvement - 02Nos </li>
+                      <li>Transmission Pipe Lines – 07 km </li>
+                      <li>Distribution Pipe Lines – 50 km </li>
+                      <p></p>
+                    </ul>
+
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6" data-aos="fade-left" data-aos-delay="200">
+            <div class="education-section">
+              <div class="section-header">
+                <h2><i class="bi bi-mortarboard"></i> Academic Excellence</h2>
+
+              <div class="education-timeline">
+                <div class="timeline-track"></div>
+
+                <div class="education-item" data-aos="slide-up" data-aos-delay="300">
+                  <div class="timeline-marker"></div>
+                  <div class="education-content">
+                    <div class="degree-header">
+                      <h3>BSc.(hons) in Quantity Surveying - 2 Class Upper</h3>
+                      <span class="year">2024</span>
+                    </div>
+                    <h4 class="institution">De Montfort University</h4>
+                    <p><B>Activities and societies: Engaged modules</B><p>
+                      <ul class="achievements">
+                      <li>Contract & Law </li>
+                      <li>Technological & Environmental Innovation </li>
+                      <li>Dissertation </li>
+                      <li>Integrated Project </li>
+                      <li>Quantity Surveying Practice</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="education-item" data-aos="slide-up" data-aos-delay="400">
+                  <div class="timeline-marker"></div>
+                  <div class="education-content">
+                    <div class="degree-header">
+                      <h3>Diploma in Quantity Surveying - NVQ 5</h3>
+                      <span class="year">2019</span>
+                    </div>
+                    <h4 class="institution">Technical College - Kandy</h4>
+                    <p><B>Activities and societies: Engaged modules</B><p>
+                      <ul class="achievements">
+                      <li>Measurements </li>
+                      <li>Contract Administration  </li>
+                      <li>Estimating & Tendering  </li>
+                      <li>Material Technology  </li>
+                      <li>Construction Technology </li>
+                      <li>QS Practice  </li>
+                      <li>Final Accounts</li>
+                      <li>General Economics</li>
+                      <li>Construction Law </li>
+                      <li>Management  </li>
+                      <li>Auto-cad. etc </li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="education-item" data-aos="slide-up" data-aos-delay="500">
+                  <div class="timeline-marker"></div>
+                  <div class="education-content">
+                    <div class="degree-header">
+                      <h3>Certificate in Quantity Surveying - NVQ 4</h3>
+                      <span class="year">2018</span>
+                    </div>
+                    <h4 class="institution">Technical College - Kandy</h4>
+                    <p>Engaged in various modules including Measurements, Estimating & Costing, Interim Valuation & Final Accounts, Construction Contracts & Tender Procedures, Construction Technology, and Construction Drawings, among others.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </section><!-- /Resume Section -->
+
+    <!-- Services Section -->
+    <section id="services" class="services section">
+
+      <!-- Section Title -->
+      <div class="container section-title">
+  <h2>Services</h2>
+  <p>Creative services to grow your brand and online presence</p>
+</div><!-- End Section Title -->
+
+<div class="container" data-aos="fade-up" data-aos-delay="100">
+  <div class="row g-4">
+
+    <!-- Card 1: Graphic Designer -->
+    <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+      <div class="service-item">
+        <div class="icon">
+          <i class="bi bi-brush"></i>
+        </div>
+        <h3>Graphic Designer</h3>
+        <p>Designing eye-catching visuals, logos, and brand materials that make your business stand out creatively.</p>
+        <div class="card-links">
+          <a href="#" class="link-item">
+            Learn More
+            <i class="bi bi-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </div><!-- End Service Item -->
+
+    <!-- Card 2: Web Designer -->
+    <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
+      <div class="service-item">
+        <div class="icon">
+          <i class="bi bi-laptop"></i>
+        </div>
+        <h3>Web Designer</h3>
+        <p>Creating responsive, user-friendly, and modern websites that bring your ideas to digital life.</p>
+        <div class="card-links">
+          <a href="#" class="link-item">
+            Learn More
+            <i class="bi bi-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </div><!-- End Service Item -->
+
+    <!-- Card 3: Social Media Handling -->
+    <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
+      <div class="service-item">
+        <div class="icon">
+          <i class="bi bi-instagram"></i>
+        </div>
+        <h3>Social Media Handling</h3>
+        <p>Managing social media accounts, creating content, and building engagement to grow your online community.</p>
+        <div class="card-links">
+          <a href="#" class="link-item">
+            Learn More
+            <i class="bi bi-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </div><!-- End Service Item -->
+
+    <!-- Card 4: Digital Marketing -->
+    <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="400">
+      <div class="service-item">
+        <div class="icon">
+          <i class="bi bi-bar-chart-line"></i>
+        </div>
+        <h3>Digital Marketing</h3>
+        <p>Boosting your business with SEO, ads, and marketing strategies that deliver measurable results.</p>
+        <div class="card-links">
+          <a href="#" class="link-item">
+            Learn More
+            <i class="bi bi-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </div><!-- End Service Item -->
+
+  </div>
+</div>
+<!-- End Service Item -->
+
+        </div>
+
+      </div>
+
+    </section><!-- /Services Section -->
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio section">
+
+      <!-- Section Title -->
+      <div class="container section-title">
+        <h2>Portfolio</h2>
+      </div><!-- End Section Title -->
+
+      <div class="container-fluid" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
+
+          <ul class="portfolio-filters isotope-filters" data-aos="fade-up" data-aos-delay="200">
+            <li data-filter="*" class="filter-active">
+              <i class="bi bi-grid-3x3"></i> All Projects
+            </li>
+            <li data-filter=".filter-ui">
+              Branding
+            </li>
+            <li data-filter=".filter-development">
+              Web Design
+            </li>
+            <li data-filter=".filter-photography">
+              Digital Design
+            </li>
+            <li data-filter=".filter-marketing">
+              Print Design
+            </li>
+          </ul>
+
+          <div class="row g-4 isotope-container" data-aos="fade-up" data-aos-delay="300">
+
+            <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item isotope-item filter-ui">
+              <article class="portfolio-entry">
+                <figure class="entry-image">
+                  <img src="assets/img/portfolio/6.jpg" class="img-fluid" alt="" loading="lazy">
+                  <div class="entry-overlay">
+                    <div class="overlay-content">
+                      <div class="entry-meta">Branding</div>
+                      <h3 class="entry-title">Eco Potion</h3>
+                      <div class="entry-links">
+                        <a href="assets/img/portfolio/6.jpg" class="glightbox" data-gallery="portfolio-gallery-ui" >
+                          <i class="bi bi-arrows-angle-expand"></i>
+                        </a>
+                        <a href="#">
+                          <i class="bi bi-arrow-right"></i>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </figure>
+              </article>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item isotope-item filter-development">
+              <article class="portfolio-entry">
+                <figure class="entry-image">
+                  <img src="assets/img/portfolio/19.png" class="img-fluid" alt="" loading="lazy">
+                  <div class="entry-overlay">
+                    <div class="overlay-content">
+                      <div class="entry-meta">Web Design</div>
+                      <h3 class="entry-title">23 tattoos website</h3>
+                      <div class="entry-links">
+                        <a href="assets/img/portfolio/19.png" class="glightbox" data-gallery="portfolio-gallery-development" >
+                          <i class="bi bi-arrows-angle-expand"></i>
+                        </a>
+                        <a href="#">
+                          <i class="bi bi-arrow-right"></i>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </figure>
+              </article>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item isotope-item filter-photography">
+              <article class="portfolio-entry">
+                <figure class="entry-image">
+                  <img src="assets/img/portfolio/21.jpg" class="img-fluid" alt="" loading="lazy">
+                  <div class="entry-overlay">
+                    <div class="overlay-content">
+                      <div class="entry-meta">Youtube Thumbnail Design</div>
+                      <h3 class="entry-title">Bepawn Yt Thumbnail</h3>
+                      <div class="entry-links">
+                        <a href="assets/img/portfolio/21.jpg" class="glightbox" data-gallery="portfolio-gallery-photography" >
+                          <i class="bi bi-arrows-angle-expand"></i>
+                        </a>
+                        <a href="#">
+                          <i class="bi bi-arrow-right"></i>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </figure>
+              </article>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item isotope-item filter-marketing">
+              <article class="portfolio-entry">
+                <figure class="entry-image">
+                  <img src="assets/img/portfolio/22.jpg" class="img-fluid" alt="" loading="lazy">
+                  <div class="entry-overlay">
+                    <div class="overlay-content">
+                      <div class="entry-meta">Print Design</div>
+                      <h3 class="entry-title">HVAC Engineering</h3>
+                      <div class="entry-links">
+                        <a href="assets/img/portfolio/22.jpg" class="glightbox" data-gallery="portfolio-gallery-marketing" >
+                          <i class="bi bi-arrows-angle-expand"></i>
+                        </a>
+                        <a href="portfolio-details.html">
+                          <i class="bi bi-arrow-right"></i>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </figure>
+              </article>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item isotope-item filter-ui">
+              <article class="portfolio-entry">
+                <figure class="entry-image">
+                  <img src="assets/img/portfolio/16.jpg" class="img-fluid" alt="" loading="lazy">
+                  <div class="entry-overlay">
+                    <div class="overlay-content">
+                      <div class="entry-meta">Branding</div>
+                      <h3 class="entry-title">Goat Gang</h3>
+                      <div class="entry-links">
+                        <a href="assets/img/portfolio/16.jpg" class="glightbox" data-gallery="portfolio-gallery-ui" >
+                          <i class="bi bi-arrows-angle-expand"></i>
+                        </a>
+                        <a href="#">
+                          <i class="bi bi-arrow-right"></i>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </figure>
+              </article>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item isotope-item filter-development">
+              <article class="portfolio-entry">
+                <figure class="entry-image">
+                  <img src="assets/img/portfolio/20.png" class="img-fluid" alt="" loading="lazy">
+                  <div class="entry-overlay">
+                    <div class="overlay-content">
+                      <div class="entry-meta">Web Design</div>
+                      <h3 class="entry-title">Cronos wears</h3>
+                      <div class="entry-links">
+                        <a href="assets/img/portfolio/20.png" class="glightbox" data-gallery="portfolio-gallery-development" >
+                          <i class="bi bi-arrows-angle-expand"></i>
+                        </a>
+                        <a href="#">
+                          <i class="bi bi-arrow-right"></i>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </figure>
+              </article>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item isotope-item filter-photography">
+              <article class="portfolio-entry">
+                <figure class="entry-image">
+                  <img src="assets/img/portfolio/23.jpg" class="img-fluid" alt="" loading="lazy">
+                  <div class="entry-overlay">
+                    <div class="overlay-content">
+                      <div class="entry-meta">Cl</div>
+                      <h3 class="entry-title">Nature Collection</h3>
+                      <div class="entry-links">
+                        <a href="assets/img/portfolio/23.jpg" class="glightbox" data-gallery="portfolio-gallery-photography" >
+                          <i class="bi bi-arrows-angle-expand"></i>
+                        </a>
+                        <a href="#">
+                          <i class="bi bi-arrow-right"></i>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </figure>
+              </article>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item isotope-item filter-marketing">
+              <article class="portfolio-entry">
+                <figure class="entry-image">
+                  <img src="assets/img/portfolio/24.jpg" class="img-fluid" alt="" loading="lazy">
+                  <div class="entry-overlay">
+                    <div class="overlay-content">
+                      <div class="entry-meta">Print Design</div>
+                      <h3 class="entry-title">T shirt Design</h3>
+                      <div class="entry-links">
+                        <a href="assets/img/portfolio/24.jpg" class="glightbox" data-gallery="portfolio-gallery-marketing" >
+                          <i class="bi bi-arrows-angle-expand"></i>
+                        </a>
+                        <a href="#">
+                          <i class="bi bi-arrow-right"></i>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </figure>
+              </article>
+            </div><!-- End Portfolio Item -->
+
+          </div><!-- End Portfolio Container -->
+
+        </div>
+
+      </div>
+
+    </section><!-- /Portfolio Section -->
+
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials section">
+  <!-- Section Title -->
+  <div class="container section-title">
+    <h2>Testimonials</h2>
+    <p>What our clients say about our logo designs, branding, and creative work</p>
+  </div>
+  
+  <!-- End Section Title -->
+
+  <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+    <div class="row">
+      <div class="col-12">
+        <div class="critic-reviews" data-aos="fade-up" data-aos-delay="300">
+          <div class="row">
+            <div class="col-md-4">
+              <div class="critic-review">
+                <div class="review-quote">"</div>
+                <div class="stars">
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                </div>
+                <p>Our brand logo turned out even better than we imagined! The design perfectly captured our company’s vibe — minimal, bold, and memorable. Highly recommend their branding expertise!</p>
+                <div class="critic-info">
+                  <div class="critic-name">Cafe HUBA</div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="critic-review">
+                <div class="review-quote">"</div>
+                <div class="stars">
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-half"></i>
+                </div>
+                <p>They designed a complete brand identity for my startup — from logo to packaging. Every piece looked cohesive and professional. The attention to detail is insane!</p>
+                <div class="critic-info">
+                  <div class="critic-name">Agro zone</div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="critic-review">
+                <div class="review-quote">"</div>
+                <div class="stars">
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                </div>
+                <p>The logo they created gave our clothing line a whole new identity. Clean, trendy, and instantly recognizable — exactly what we needed for our rebrand.</p>
+                <div class="critic-info">
+                  <div class="critic-name">Pradhi Fashion</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    <!-- Faq Section -->
+    <section id="faq" class="faq section">
+
+  <!-- Section Title -->
+  <div class="container section-title">
+    <h2>Frequently Asked Questions</h2>
+    <p>Here are some common questions clients ask about my Graphic Designing and Social Media Management services.</p>
+  </div><!-- End Section Title -->
+
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-12" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="faq-container">
+
+          <div class="faq-item faq-active">
+            <h3>What services do you offer in Graphic Designing?</h3>
+            <div class="faq-content">
+              <p>I provide a wide range of design services including logo design, branding, packaging, social media post designs, business cards, flyers, and more — all customized to match your brand’s personality and goals.</p>
+            </div>
+            <i class="faq-toggle bi bi-chevron-right"></i>
+          </div><!-- End Faq item-->
+
+          <div class="faq-item">
+            <h3>Do you handle social media management too?</h3>
+            <div class="faq-content">
+              <p>Yes, I do! I manage complete social media pages — from designing posts and writing captions to scheduling, engaging with audiences, and tracking performance to help your brand grow online.</p>
+            </div>
+            <i class="faq-toggle bi bi-chevron-right"></i>
+          </div><!-- End Faq item-->
+
+          <div class="faq-item">
+            <h3>How long do you take to design a logo or brand identity?</h3>
+            <div class="faq-content">
+              <p>It usually takes me around 3–5 working days to design a professional logo and about 7–10 days for a full brand identity package, depending on your requirements and feedback.</p>
+            </div>
+            <i class="faq-toggle bi bi-chevron-right"></i>
+          </div><!-- End Faq item-->
+
+          <div class="faq-item">
+            <h3>Do you create custom designs or use templates?</h3>
+            <div class="faq-content">
+              <p>All my designs are fully custom-made. I don’t use pre-made templates — every project I work on is unique and created from scratch to reflect your brand’s identity.</p>
+            </div>
+            <i class="faq-toggle bi bi-chevron-right"></i>
+          </div><!-- End Faq item-->
+
+          <div class="faq-item">
+            <h3>Can you help me grow my followers and engagement?</h3>
+            <div class="faq-content">
+              <p>Definitely! I focus on creating consistent, attractive, and engaging content that helps increase reach, followers, and audience engagement — both organically and through ad campaigns if needed.</p>
+            </div>
+            <i class="faq-toggle bi bi-chevron-right"></i>
+          </div><!-- End Faq item-->
+
+          <div class="faq-item">
+            <h3>What do you need from me before starting a project?</h3>
+            <div class="faq-content">
+              <p>I’ll need some basic details like your business name, target audience, design preferences, color scheme, and any ideas or sample references you already have. The more details you share, the better I can match your vision.</p>
+            </div>
+            <i class="faq-toggle bi bi-chevron-right"></i>
+          </div><!-- End Faq item-->
+
+        </div>
+
+      </div><!-- End Faq Column-->
+    </div>
+  </div>
+
+</section>
+
+
+    </section><!-- /Faq Section -->
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact section light-background">
+
+  <!-- Section Title -->
+  <div class="container section-title">
+    <h2>Contact</h2>
+    <p>Have a project in mind or want to collaborate? Feel free to reach out — I’d love to hear from you.</p>
+  </div><!-- End Section Title -->
+
+  <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+    <div class="row g-4 g-lg-5">
+
+      <!-- Contact Info -->
+      <div class="col-lg-5">
+        <div class="info-box" data-aos="fade-up" data-aos-delay="200">
+          <h3>Contact Information</h3>
+          <p>If you’re looking for a professional touch in graphic designing or social media management, get in touch through the details below.</p>
+
+          <div class="info-item" data-aos="fade-up" data-aos-delay="300">
+            <div class="icon-box">
+              <i class="bi bi-geo-alt"></i>
+            </div>
+            <div class="content">
+              <h4>Location</h4>
+              <p>204, Udarata Sadella,</p>
+              <p>Haragama, Kandy, Sri Lanka</p>
+            </div>
+          </div>
+
+          <div class="info-item" data-aos="fade-up" data-aos-delay="400">
+            <div class="icon-box">
+              <i class="bi bi-telephone"></i>
+            </div>
+            <div class="content">
+              <h4>Phone</h4>
+              <p>+94 72 731 5430</p>
+            </div>
+          </div>
+
+          <div class="info-item" data-aos="fade-up" data-aos-delay="500">
+            <div class="icon-box">
+              <i class="bi bi-envelope"></i>
+            </div>
+            <div class="content">
+              <h4>Email</h4>
+              <p>info.creativodesigns@gmail.com</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End Contact Info -->
+
+      <!-- Contact Form -->
+      <div class="col-lg-7">
+        <div class="contact-form" data-aos="fade-up" data-aos-delay="300">
+          <h3>Get In Touch</h3>
+          <p>Fill out the form below and I’ll get back to you as soon as possible.</p>
+
+          <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
+            <div class="row gy-4">
+
+              <div class="col-md-6">
+                <input type="text" name="name" class="form-control" placeholder="Your Name" required="">
+              </div>
+
+              <div class="col-md-6">
+                <input type="email" name="email" class="form-control" placeholder="Your Email" required="">
+              </div>
+
+              <div class="col-12">
+                <input type="text" name="subject" class="form-control" placeholder="Subject" required="">
+              </div>
+
+              <div class="col-12">
+                <textarea class="form-control" name="message" rows="6" placeholder="Message" required=""></textarea>
+              </div>
+
+              <div class="col-12 text-center">
+                <div class="loading">Loading</div>
+                <div class="error-message"></div>
+                <div class="sent-message">Your message has been sent. Thank you!</div>
+
+                <button type="submit" class="btn">Send Message</button>
+              </div>
+
+            </div>
+          </form>
+
+        </div>
+      </div>
+      <!-- End Contact Form -->
+
+    </div>
+
+  </div>
+
+</section>
+<!-- /Contact Section -->
+
+  </main>
+
+  <footer id="footer" class="footer dark-background">
+
+    <div class="container">
+      <div class="copyright text-center ">
+        <p>© <span>Copyright</span> <strong class="px-1 sitename">Style</strong> <span>All Rights Reserved</span></p>
+      </div>
+      <div class="social-links d-flex justify-content-center">
+        <a href=""><i class="bi bi-twitter-x"></i></a>
+        <a href=""><i class="bi bi-facebook"></i></a>
+        <a href=""><i class="bi bi-instagram"></i></a>
+        <a href=""><i class="bi bi-linkedin"></i></a>
+      </div>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you've purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
+        Designed by <a href="https://creativodesign.com/">Creativo Design</a>
+      </div>
+    </div>
+     
+  </div>
+</footer>
+
+  </footer>
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/typed.js/typed.umd.js"></script>
+  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+  <!-- Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+  <script>
+    // Add scroll behavior for navbar
+    document.addEventListener('DOMContentLoaded', function() {
+      const navbar = document.querySelector('.top-navbar');
+      
+      window.addEventListener('scroll', function() {
+        if (window.scrollY > 50) {
+          navbar.classList.add('scrolled');
+        } else {
+          navbar.classList.remove('scrolled');
+        }
+      });
+      
+      // Smooth scrolling for navigation links
+      document.querySelectorAll('.navbar-nav a').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          e.preventDefault();
+          
+          const targetId = this.getAttribute('href');
+          if(targetId === '#') return;
+          
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            window.scrollTo({
+              top: targetElement.offsetTop - 80,
+              behavior: 'smooth'
+            });
+          }
+        });
+      });
+      
+      // Update active nav link on scroll
+      const sections = document.querySelectorAll('section[id]');
+      
+      function scrollActive() {
+        const scrollY = window.pageYOffset;
+        
+        sections.forEach(section => {
+          const sectionHeight = section.offsetHeight;
+          const sectionTop = section.offsetTop - 100;
+          const sectionId = section.getAttribute('id');
+          
+          if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+            document.querySelector('.navbar-nav a[href*=' + sectionId + ']').classList.add('active');
+          } else {
+            document.querySelector('.navbar-nav a[href*=' + sectionId + ']').classList.remove('active');
+          }
+        });
+      }
+      
+      window.addEventListener('scroll', scrollActive);
+    });
+  </script>
+
+</body>
+
+</html>
