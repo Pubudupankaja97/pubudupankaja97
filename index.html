@@ -9,6 +9,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,300;0,400;0,700;0,900;1,700&family=Barlow:wght@300;400;500&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;cursor:none!important}
+@media(max-width:900px),(hover:none){
+  *,*::before,*::after{cursor:auto!important}
+  body{cursor:auto!important}
+}
 :root{
   --red:#f95e0a;
   --orange:#f97316;
@@ -30,9 +34,15 @@
 html{
   scroll-behavior:smooth;
 }
+@media(max-width:900px){
+  html{ scroll-behavior:auto; }
+}
 body{
   background:var(--black);color:var(--white);font-family:var(--font-body);font-weight:300;
   overflow-x:hidden;cursor:none;
+}
+@media(max-width:900px),(hover:none){
+  body{cursor:auto;}
 }
 
 /* ══════════════════════════════════════════════
@@ -46,6 +56,15 @@ body{
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
 }
+@media(max-width:900px){
+  #snap-root {
+    height: auto;
+    overflow-y: visible;
+    overflow-x: hidden;
+    scroll-snap-type: none;
+    scroll-behavior: auto;
+  }
+}
 
 /* Every snap section wrapper */
 .snap-section {
@@ -54,6 +73,13 @@ body{
   position: relative;
   overflow: hidden;
   will-change: transform;
+}
+@media(max-width:900px){
+  .snap-section {
+    scroll-snap-align: none;
+    min-height: auto;
+    overflow: visible;
+  }
 }
 
 /* Tall content sections allow internal height */
@@ -67,6 +93,10 @@ body{
   min-height: auto;
   scroll-snap-align: end;
 }
+@media(max-width:900px){
+  .snap-section.tall { min-height: auto; }
+  .snap-section:last-child { scroll-snap-align: none; }
+}
 
 /* The zoom-scale inner: starts at scale(1), zooms in slightly on snap entry */
 .snap-zoom-inner {
@@ -76,6 +106,13 @@ body{
   transform-origin: center center;
   transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
   will-change: transform;
+}
+@media(max-width:900px){
+  .snap-zoom-inner {
+    min-height: auto;
+    transform: scale(1) !important;
+    transition: none !important;
+  }
 }
 
 /* About — lock to 100vh */
@@ -91,6 +128,11 @@ body{
 .snap-section:has(#about) #about {
   height: 100vh;
   overflow: hidden;
+}
+@media(max-width:900px){
+  .snap-section:has(#about) { height: auto !important; overflow: visible !important; }
+  .snap-section:has(#about) .snap-zoom-inner { height: auto !important; min-height: auto !important; overflow: visible !important; }
+  .snap-section:has(#about) #about { height: auto !important; overflow: visible !important; }
 }
 
 /* For sections that must be exactly 100vh (no overflow) */
@@ -119,6 +161,11 @@ body{
   flex: 1 !important;
   min-height: 0 !important;
 }
+@media(max-width:900px){
+  .snap-section:has(#stats) { height: auto !important; min-height: auto !important; max-height: none !important; overflow: visible !important; }
+  .snap-section:has(#stats) .snap-zoom-inner { height: auto !important; min-height: auto !important; max-height: none !important; overflow: visible !important; }
+  .snap-section:has(#stats) #stats { height: auto !important; max-height: none !important; }
+}
 
 /* Skills — lock to 100vh */
 .snap-section:has(#skills) {
@@ -133,6 +180,11 @@ body{
 .snap-section:has(#skills) #skills {
   height: 100vh;
   overflow: hidden;
+}
+@media(max-width:900px){
+  .snap-section:has(#skills) { height: auto !important; overflow: visible !important; }
+  .snap-section:has(#skills) .snap-zoom-inner { height: auto !important; min-height: auto !important; overflow: visible !important; }
+  .snap-section:has(#skills) #skills { height: auto !important; overflow: visible !important; }
 }
 
 .snap-section.snapped .snap-zoom-inner {
@@ -200,6 +252,9 @@ body{
 }
 .snap-dot.light::after { color: var(--white); right: 20px; }
 
+@media(max-width:900px){
+  #snap-dots { display: none; }
+}
 @media(max-width:600px){
   #snap-dots { display: none; }
   .snap-zoom-inner { transform: scale(1); }
@@ -248,6 +303,9 @@ section, nav, footer, #preloader, #svg-cursor, #svg-burst, #scroll-progress, #cu
   top:0;left:0;
   will-change:transform;
   width:28px;height:28px;
+}
+@media(max-width:900px),(hover:none){
+  #svg-cursor,#svg-burst,#cursor-spotlight{display:none!important}
 }
 #svg-cursor svg{
   filter:drop-shadow(0 0 4px rgba(249,94,10,.55));
@@ -341,6 +399,12 @@ nav.scrolled{
   background:var(--black);overflow:hidden;
   display:flex;align-items:flex-end;
 }
+@media(max-width:900px){
+  #hero{ height:100svh; min-height:500px; align-items:center; padding-top:80px; }
+}
+@media(max-width:600px){
+  #hero{ min-height:100svh; align-items:flex-end; padding-top:0; }
+}
 .hero-bg-name{
   position:absolute;top:50%;left:0;
   transform:translateY(-55%);
@@ -398,6 +462,12 @@ nav.scrolled{
   position:relative;z-index:10;
   width:46%;margin-left:auto;
   padding:0 48px 80px 60px;
+}
+@media(max-width:900px){
+  .hero-content{ width:100%; margin-left:0; padding:0 28px 72px; background:rgba(8,8,8,.55); backdrop-filter:blur(6px); }
+}
+@media(max-width:600px){
+  .hero-content{ padding:0 20px 56px; background:none; backdrop-filter:none; }
 }
 .hero-counter{
   display:flex;align-items:center;gap:12px;margin-bottom:32px;
@@ -505,6 +575,11 @@ nav.scrolled{
 }
 .snap-section:has(#about){height:100vh!important;overflow:hidden!important;}
 .snap-section:has(#about) .snap-zoom-inner{height:100vh!important;min-height:100vh!important;overflow:hidden!important;}
+@media(max-width:900px){
+  #about{ height:auto!important; overflow:visible!important; grid-template-columns:1fr; display:flex; flex-direction:column; }
+  .snap-section:has(#about){ height:auto!important; overflow:visible!important; }
+  .snap-section:has(#about) .snap-zoom-inner{ height:auto!important; min-height:auto!important; overflow:visible!important; }
+}
 
 .about-left{
   background:#f5f3ef;
@@ -513,6 +588,9 @@ nav.scrolled{
   border-right:1px solid #e0ddd9;
   display:flex;flex-direction:column;justify-content:center;
   overflow:hidden;height:100vh;box-sizing:border-box;
+}
+@media(max-width:900px){
+  .about-left{ height:auto; min-height:0; padding:calc(72px + 20px) 28px 40px; border-right:none; border-bottom:1px solid #e0ddd9; }
 }
 .about-label{
   font-family:var(--font-cond);font-size:.65rem;font-weight:700;
@@ -563,6 +641,9 @@ nav.scrolled{
   z-index:20;
   width:auto;
 }
+@media(max-width:900px){
+  .social-strip{ position:relative; top:auto; left:auto; transform:none; flex-direction:row; margin-top:24px; width:100%; }
+}
 .social-btn{
   background:var(--black);color:var(--white);
   display:flex;align-items:center;justify-content:center;
@@ -587,6 +668,9 @@ nav.scrolled{
   position:relative;overflow:hidden;
   background:var(--black);
   height:100vh;
+}
+@media(max-width:900px){
+  .about-right{ height:60vw; min-height:260px; }
 }
 .about-right-photo{
   width:100%;height:100%;
@@ -638,6 +722,9 @@ nav.scrolled{
   display:grid;grid-template-columns:1fr 1fr;gap:0;
   overflow:hidden;
 }
+@media(max-width:900px){
+  #skills{ height:auto!important; min-height:auto; grid-template-columns:1fr; overflow:visible; }
+}
 .skills-left{
   padding:48px 56px 48px 48px;
   border-right:1px solid rgba(255,255,255,.08);
@@ -648,6 +735,10 @@ nav.scrolled{
   padding:48px 48px 48px 56px;
   display:flex;flex-direction:column;justify-content:center;
   overflow:hidden;
+}
+@media(max-width:900px){
+  .skills-left{ padding:48px 28px 32px; border-right:none; border-bottom:1px solid rgba(255,255,255,.08); overflow:visible; }
+  .skills-right{ padding:32px 28px 52px; overflow:visible; }
 }
 .skills-big-label{
   font-family:var(--font-cond);font-size:clamp(48px,7vw,90px);
@@ -772,12 +863,20 @@ nav.scrolled{
 }
 .snap-section:has(#resume){height:100vh!important;overflow:hidden!important;}
 .snap-section:has(#resume) .snap-zoom-inner{height:100vh!important;min-height:100vh!important;overflow:hidden!important;}
+@media(max-width:900px){
+  #resume{ height:auto!important; min-height:auto; overflow:visible; grid-template-columns:1fr; }
+  .snap-section:has(#resume){ height:auto!important; overflow:visible!important; }
+  .snap-section:has(#resume) .snap-zoom-inner{ height:auto!important; min-height:auto!important; overflow:visible!important; }
+}
 .resume-left{
   background:var(--black);
   padding:calc(56px + 32px) 48px 32px 48px;
   position:relative;overflow:hidden;
   display:flex;flex-direction:column;justify-content:center;
   height:100vh;box-sizing:border-box;
+}
+@media(max-width:900px){
+  .resume-left{ height:auto; padding:60px 28px 40px; }
 }
 .resume-bg-text{
   position:absolute;bottom:-30px;left:-10px;
@@ -820,6 +919,9 @@ nav.scrolled{
   display:flex;flex-direction:column;justify-content:center;
   height:100vh;box-sizing:border-box;overflow:hidden;
 }
+@media(max-width:900px){
+  .resume-right{ height:auto; padding:40px 28px 60px; overflow:visible; }
+}
 .edu-item{
   margin-bottom:20px;padding-bottom:20px;
   border-bottom:1px solid rgba(255,255,255,.07);
@@ -859,6 +961,9 @@ nav.scrolled{
   padding:0 40px 40px;
   border-bottom:none;
 }
+@media(max-width:900px){
+  .services-top{ flex-direction:column; align-items:flex-start; gap:16px; padding:0 0 24px; }
+}
 .services-heading{
   font-family:var(--font-cond);font-size:clamp(2.5rem,6vw,5rem);
   font-weight:900;letter-spacing:-.02em;text-transform:uppercase;
@@ -869,10 +974,19 @@ nav.scrolled{
   max-width:340px;font-size:.9rem;
   color:rgba(255,255,255,.75);line-height:1.75;text-align:right;
 }
+@media(max-width:900px){
+  .services-intro-text{ text-align:left; max-width:100%; }
+}
 .services-grid{
   display:grid;grid-template-columns:repeat(4,1fr);
   gap:0;
   margin:40px 0 80px;
+}
+@media(max-width:900px){
+  .services-grid{ grid-template-columns:1fr 1fr; margin:24px 0 40px; }
+}
+@media(max-width:600px){
+  .services-grid{ grid-template-columns:1fr; margin:20px 0 32px; }
 }
 .svc-card{
   background:rgba(0,0,0,.18);padding:36px 28px;
@@ -1029,6 +1143,11 @@ nav.scrolled{
 }
 .snap-section:has(#portfolio){height:100vh!important;overflow:hidden!important;}
 .snap-section:has(#portfolio) .snap-zoom-inner{height:100vh!important;min-height:100vh!important;overflow:hidden!important;}
+@media(max-width:900px){
+  #portfolio{ height:auto!important; min-height:auto; overflow:visible; padding:calc(56px + 20px) 20px 48px; align-items:flex-start; }
+  .snap-section:has(#portfolio){ height:auto!important; overflow:visible!important; }
+  .snap-section:has(#portfolio) .snap-zoom-inner{ height:auto!important; min-height:auto!important; overflow:visible!important; }
+}
 #portfolio::before{
   content:'';
   position:absolute;inset:0;
@@ -1046,12 +1165,18 @@ nav.scrolled{
   height:100%;
   max-height:calc(100vh - 56px - 48px);
 }
+@media(max-width:900px){
+  .port-layout{ grid-template-columns:1fr; height:auto; max-height:none; }
+}
 .port-left{
   display:flex;
   flex-direction:column;
   justify-content:center;
   padding-right:60px;
   z-index:2;
+}
+@media(max-width:900px){
+  .port-left{ padding-right:0; padding-bottom:24px; }
 }
 .port-right{
   position:relative;
@@ -1086,6 +1211,12 @@ nav.scrolled{
   perspective:1400px;
   overflow:visible;
 }
+@media(max-width:900px){
+  .fan-stage{ height:380px; }
+}
+@media(max-width:600px){
+  .fan-stage{ height:320px; }
+}
 
 /* Each fan card */
 .fan-card{
@@ -1105,6 +1236,15 @@ nav.scrolled{
   border:1px solid rgba(255,255,255,.07);
   will-change:transform;
   user-select:none;
+}
+@media(max-width:900px){
+  .fan-card{ width:220px; height:310px; }
+}
+@media(max-width:600px){
+  .fan-card{ width:170px; height:250px; }
+}
+@media(max-width:390px){
+  .fan-card{ width:140px; height:210px; }
 }
 .fan-card img{
   width:100%;height:100%;object-fit:cover;display:block;
@@ -1569,7 +1709,6 @@ nav.scrolled{
   .marquee-item{padding:0 20px}
   .marquee-item span{font-size:.66rem}
 }
-}
 
 /* ══════════════════════════════════════════════
    PRELOADER
@@ -1676,6 +1815,9 @@ nav.scrolled{
   max-height: 100vh !important;
   padding: 0 !important;
 }
+@media(max-width:900px){
+  #stats{ height: auto !important; max-height: none !important; overflow: visible !important; }
+}
 #stats::before{
   content:''; position:absolute; left:0; top:0; bottom:0; width:3px; background:var(--grad); z-index:2;
 }
@@ -1757,6 +1899,9 @@ nav.scrolled{
   overflow: hidden;
   display: flex;
   flex-direction: column;
+}
+@media(max-width:900px){
+  .stats-gallery{ min-height: 55vw; flex: none; overflow: hidden; }
 }
 
 /* Gallery heading bar */
@@ -2127,6 +2272,15 @@ nav.scrolled{
   padding: 0 72px;
   overflow: hidden;
 }
+@media(max-width:900px){
+  #quote-break { height: auto; min-height: auto; grid-template-columns: 1fr; overflow: visible; }
+  .quote-photo-wrap { height: 50vw; min-height: 220px; }
+  .quote-text-wrap { height: auto; padding: 52px 28px; overflow: visible; }
+}
+@media(max-width:600px){
+  .quote-photo-wrap { height: 55vw; min-height: 200px; }
+  .quote-text-wrap { padding: 40px 20px; }
+}
 
 /* ── 2. SERVICES — full 100vh, content scaled to fit ── */
 #services {
@@ -2138,6 +2292,12 @@ nav.scrolled{
   padding: 0 40px;
   overflow: hidden;
   box-sizing: border-box;
+}
+@media(max-width:900px){
+  #services { height: auto !important; min-height: auto; padding: 60px 28px; overflow: visible; }
+}
+@media(max-width:600px){
+  #services { padding: 56px 20px; }
 }
 .services-top {
   padding: 0;
@@ -2186,6 +2346,15 @@ nav.scrolled{
   gap: 24px;
   overflow: hidden;
 }
+@media(max-width:900px){
+  #testimonials { height: auto; min-height: auto; grid-template-columns: 1fr; overflow: visible; }
+  .testi-left { height: auto; overflow: visible; padding: 52px 28px 32px; }
+  .testi-right { height: auto; overflow: visible; padding: 32px 28px 52px; }
+}
+@media(max-width:600px){
+  .testi-left { padding: 48px 20px 28px; }
+  .testi-right { padding: 28px 20px 48px; gap: 14px; }
+}
 .testi-card {
   padding: 24px 28px;
 }
@@ -2223,6 +2392,16 @@ nav.scrolled{
   position: relative;
   overflow: hidden;
 }
+@media(max-width:900px){
+  #faq { height: auto; min-height: auto; overflow: visible; }
+  .faq-inner { height: auto; grid-template-columns: 1fr; }
+  .faq-right { order: 1; height: auto; overflow: visible; padding: 56px 28px; }
+  .faq-left { order: 2; height: 50vw; min-height: 240px; }
+}
+@media(max-width:600px){
+  .faq-right { padding: 48px 20px; }
+  .faq-left { height: 55vw; min-height: 200px; }
+}
 .faq-illustration {
   position: absolute;
   inset: 0;
@@ -2252,6 +2431,13 @@ nav.scrolled{
   min-height: 0;
   overflow: hidden;
 }
+@media(max-width:900px){
+  #contact-footer-wrap { height: auto; min-height: auto; overflow: visible; }
+  #contact { grid-template-columns: 1fr; overflow: visible; flex: none; }
+}
+@media(max-width:600px){
+  #contact { display: flex; flex-direction: column; }
+}
 .contact-left {
   padding: clamp(28px, 4vh, 56px) clamp(28px, 4vw, 56px);
   display: flex;
@@ -2266,6 +2452,14 @@ nav.scrolled{
   flex-direction: column;
   justify-content: center;
   overflow: hidden;
+}
+@media(max-width:900px){
+  .contact-left { overflow: visible; padding: 48px 28px; }
+  .contact-right { overflow: visible; padding: 40px 28px 56px; }
+}
+@media(max-width:600px){
+  .contact-left { padding: 48px 20px 36px; }
+  .contact-right { padding: 32px 20px 52px; }
 }
 .contact-heading {
   font-size: clamp(1.6rem, 3.2vw, 3.2rem);
@@ -2303,6 +2497,9 @@ nav.scrolled{
 .ci-label { font-size: clamp(.52rem, .7vw, .65rem); }
 .contact-form { display: flex; flex-direction: column; gap: clamp(8px, 1.2vh, 14px); }
 .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(8px, 1.2vh, 14px); }
+@media(max-width:600px){
+  .form-row { grid-template-columns: 1fr; }
+}
 input, textarea {
   width: 100%;
   background: rgba(255,255,255,.04);
@@ -2321,6 +2518,9 @@ textarea {
   resize: none;
   height: clamp(56px, 8vh, 100px);
   min-height: 0;
+}
+@media(max-width:600px){
+  textarea { height: 80px; min-height: 80px; }
 }
 .submit-btn {
   background: var(--grad-h);
@@ -2355,50 +2555,56 @@ footer {
 
 /* Responsive overrides for the new fit-sections */
 @media (max-width: 900px) {
-  #quote-break { grid-template-columns: 1fr; height: auto; min-height: 100svh; }
-  .quote-photo-wrap { height: 45vh; min-height: 260px; }
-  .quote-text-wrap { height: auto; padding: 52px 36px; }
-  #services { height: auto; min-height: 100svh; padding: 60px 28px; }
+  #quote-break { grid-template-columns: 1fr; height: auto; min-height: auto; overflow: visible; }
+  .quote-photo-wrap { height: 45vh; min-height: 220px; }
+  .quote-text-wrap { height: auto; padding: 52px 28px; overflow: visible; }
+  #services { height: auto !important; min-height: auto !important; padding: 60px 28px; overflow: visible; }
   .services-grid { grid-template-columns: 1fr 1fr; }
-  #testimonials { grid-template-columns: 1fr; height: auto; min-height: 100svh; }
-  .testi-left, .testi-right { height: auto; }
-  #faq { height: auto; min-height: 100svh; }
+  #testimonials { grid-template-columns: 1fr; height: auto; min-height: auto; overflow: visible; }
+  .testi-left, .testi-right { height: auto; overflow: visible; }
+  #faq { height: auto; min-height: auto; overflow: visible; }
   .faq-inner { grid-template-columns: 1fr; height: auto; }
-  .faq-left { height: 50vw; min-height: 280px; order: 2; }
-  .faq-right { height: auto; order: 1; padding: 56px 36px; }
-  #contact { grid-template-columns: 1fr; }
-  .contact-left, .contact-right { padding: 48px 28px; }
-  #contact-footer-wrap { height: auto; min-height: 100svh; }
+  .faq-left { height: 50vw; min-height: 240px; order: 2; }
+  .faq-right { height: auto; overflow: visible; order: 1; padding: 56px 28px; }
+  #contact { grid-template-columns: 1fr; overflow: visible; }
+  .contact-left, .contact-right { padding: 48px 28px; overflow: visible; }
+  #contact-footer-wrap { height: auto; min-height: auto; overflow: visible; }
 
   /* About — unlock from 100vh on tablet */
   .snap-section:has(#about) { height: auto !important; overflow: visible !important; }
-  .snap-section:has(#about) .snap-zoom-inner { height: auto !important; min-height: 100svh !important; overflow: visible !important; }
-  #about { height: auto !important; min-height: 100svh; overflow: visible !important; grid-template-columns: 1fr; }
-  .about-left { height: auto; min-height: 0; padding: calc(72px + 20px) 36px 40px; background: #f5f3ef; }
-  .about-right { height: 55vw; min-height: 260px; }
+  .snap-section:has(#about) .snap-zoom-inner { height: auto !important; min-height: auto !important; overflow: visible !important; }
+  #about { height: auto !important; min-height: auto; overflow: visible !important; grid-template-columns: 1fr; display: flex; flex-direction: column; }
+  .about-left { height: auto; min-height: 0; padding: calc(72px + 20px) 28px 40px; background: #f5f3ef; border-right: none; border-bottom: 1px solid #e0ddd9; }
+  .about-right { height: 60vw; min-height: 260px; }
 
   /* Skills — unlock and stack */
   .snap-section:has(#skills) { height: auto !important; overflow: visible !important; }
-  .snap-section:has(#skills) .snap-zoom-inner { height: auto !important; min-height: 100svh !important; overflow: visible !important; }
-  #skills { height: auto !important; min-height: 100svh; grid-template-columns: 1fr; overflow: visible; }
-  .skills-left { padding: 56px 36px 36px; border-right: none; border-bottom: 1px solid rgba(255,255,255,.08); }
-  .skills-right { padding: 36px 36px 60px; }
+  .snap-section:has(#skills) .snap-zoom-inner { height: auto !important; min-height: auto !important; overflow: visible !important; }
+  #skills { height: auto !important; min-height: auto !important; grid-template-columns: 1fr; overflow: visible; }
+  .skills-left { padding: 56px 28px 36px; border-right: none; border-bottom: 1px solid rgba(255,255,255,.08); overflow: visible; }
+  .skills-right { padding: 36px 28px 60px; overflow: visible; }
 
   /* Resume — unlock */
   .snap-section:has(#resume) { height: auto !important; overflow: visible !important; }
-  .snap-section:has(#resume) .snap-zoom-inner { height: auto !important; min-height: 100svh !important; overflow: visible !important; }
-  #resume { height: auto !important; min-height: 100svh; overflow: visible; grid-template-columns: 1fr; }
-  .resume-left, .resume-right { height: auto; min-height: 0; }
+  .snap-section:has(#resume) .snap-zoom-inner { height: auto !important; min-height: auto !important; overflow: visible !important; }
+  #resume { height: auto !important; min-height: auto !important; overflow: visible; grid-template-columns: 1fr; }
+  .resume-left, .resume-right { height: auto; min-height: 0; overflow: visible; }
 
   /* Portfolio */
   .snap-section:has(#portfolio) { height: auto !important; overflow: visible !important; }
-  .snap-section:has(#portfolio) .snap-zoom-inner { height: auto !important; min-height: 100svh !important; overflow: visible !important; }
-  #portfolio { height: auto !important; min-height: 100svh; padding: calc(56px + 24px) 28px 48px; }
+  .snap-section:has(#portfolio) .snap-zoom-inner { height: auto !important; min-height: auto !important; overflow: visible !important; }
+  #portfolio { height: auto !important; min-height: auto !important; padding: calc(56px + 20px) 20px 48px; align-items: flex-start; overflow: visible; }
   .port-layout { grid-template-columns: 1fr; gap: 0; }
   .port-left { padding-right: 0; padding-bottom: 0; }
   .port-right { padding: 0; }
-  .fan-stage { height: 420px; margin-top: 24px; }
+  .fan-stage { height: 380px; margin-top: 24px; }
   .fan-card { width: 240px; height: 340px; }
+
+  /* Stats — unlock */
+  .snap-section:has(#stats) { height: auto !important; min-height: auto !important; max-height: none !important; overflow: visible !important; }
+  .snap-section:has(#stats) .snap-zoom-inner { height: auto !important; min-height: auto !important; max-height: none !important; overflow: visible !important; }
+  #stats { height: auto !important; max-height: none !important; overflow: visible !important; }
+  .stats-gallery { min-height: 55vw; flex: none; }
 }
 
 @media (max-width: 600px) {
@@ -3110,11 +3316,18 @@ footer {
    SCROLL PROGRESS BAR
 ══════════════════════════════════════════════ */
 const progressBar = document.getElementById('scroll-progress');
-window.addEventListener('scroll', () => {
-  const s = document.documentElement;
-  const pct = (s.scrollTop / (s.scrollHeight - s.clientHeight)) * 100;
-  progressBar.style.width = pct + '%';
-}, { passive: true });
+function updateProgress() {
+  const snapRoot = document.getElementById('snap-root');
+  if (snapRoot && snapRoot.scrollHeight > snapRoot.clientHeight) {
+    const pct = (snapRoot.scrollTop / (snapRoot.scrollHeight - snapRoot.clientHeight)) * 100;
+    progressBar.style.width = pct + '%';
+  } else {
+    const s = document.documentElement;
+    const pct = (s.scrollTop / (s.scrollHeight - s.clientHeight)) * 100;
+    progressBar.style.width = pct + '%';
+  }
+}
+window.addEventListener('scroll', updateProgress, { passive: true });
 
 /* ══════════════════════════════════════════════
    SVG ARROW CURSOR
@@ -3808,6 +4021,25 @@ window.addEventListener('load', () => {
    SECTION SNAP + ZOOM SCROLL SYSTEM
 ══════════════════════════════════════════════ */
 (function() {
+  // Disable snap system on mobile/tablet
+  if (window.innerWidth <= 900) {
+    // On mobile: wire up anchor links for smooth-ish scroll (native, no snap-root needed)
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', function(e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (!target) return;
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'auto', block: 'start' });
+      });
+    });
+    // Navbar scroll class on window
+    window.addEventListener('scroll', () => {
+      const navbar = document.getElementById('navbar');
+      if (navbar) navbar.classList.toggle('scrolled', window.scrollY > 80);
+    }, { passive: true });
+    return;
+  }
+
   // ── 1. Create the scroll container ──────────
   const root = document.createElement('div');
   root.id = 'snap-root';
